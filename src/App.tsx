@@ -63,7 +63,7 @@ const App = () => {
     const editorRef = useRef<HTMLDivElement | null>(null);
     const [editorHeight, setEditorHeight] = useState(1000);
     const [editorWidth, setEditorWidth] = useState(700);
-    const [imgList, setImgList] = useState<HTMLImageElement[]>([]);
+    const [imgList, setImgList] = useState<string[]>([]);
     const [elements, setElements] = useState<EditorElementProp[]>([]);
     const setElementList = (elementList: EditorElementProp[]) => {
         setElements(elementList);
@@ -72,9 +72,10 @@ const App = () => {
         setEditorHeight((prev) => (flag ? prev + diffSizeOfGap : prev - diffSizeOfGap));
     };
     const changeEditorWidth = (w: number) => {
-        setEditorWidth(w);
+        console.log(w);
+        setEditorWidth(w > 1200 ? 1200 : w);
     };
-    const addImg = (img: HTMLImageElement) => {
+    const addImg = (img: string) => {
         setImgList((prev) => [...prev, img]);
     };
     const deleteImg = (idx: number) => {
@@ -86,7 +87,13 @@ const App = () => {
         <>
             <Container>
                 <Description />
-                <AssetController changeEditorWidth={changeEditorWidth} addImg={addImg} deleteImg={deleteImg} />
+                <AssetController
+                    editorWidth={editorWidth}
+                    imgList={imgList}
+                    changeEditorWidth={changeEditorWidth}
+                    addImg={addImg}
+                    deleteImg={deleteImg}
+                />
                 <Editor
                     elements={elements}
                     setElements={setElementList}

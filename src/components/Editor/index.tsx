@@ -222,4 +222,4 @@ const Editor = ({ elements, setElements, editorRef, editorHeight, saveEditorHeig
     );
 };
 
-export default forwardRef(Editor);
+export default Editor;
