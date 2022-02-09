@@ -17,12 +17,13 @@ import EditorElement from 'components/EditorElement';
 type Props = {
     elements: EditorElementProp[];
     setElements: Function;
+    editorImageState: string[];
     editorRef: React.MutableRefObject<HTMLDivElement | null>;
     editorHeight: number;
     saveEditorHeight: (flag: boolean) => void;
 };
 
-const Editor = ({ elements, setElements, editorRef, editorHeight, saveEditorHeight }: Props) => {
+const Editor = ({ elements, setElements, editorImageState, editorRef, editorHeight, saveEditorHeight }: Props) => {
     const [currentElements, setCurrentElements] = useState<Array<HTMLElement | null>>([]);
     const [showColorPicker, setShowColorPicker] = useState(false);
     const [showFontStyler, setShowFontStyler] = useState(false);
@@ -33,7 +34,6 @@ const Editor = ({ elements, setElements, editorRef, editorHeight, saveEditorHeig
         fontSize: 14,
         fontFamily: 'Montserrat',
     });
-    const [editorImageState, setEditorImageState] = useState([]);
     const [elementCount, setElementCount] = useState({
         any: elements.length,
         img: elements.filter((element) => element.tagName === 'IMAGE').length,
@@ -83,9 +83,9 @@ const Editor = ({ elements, setElements, editorRef, editorHeight, saveEditorHeig
                 keyToCurrentElements([]);
             }
         });
-        return () => {
-            setEditorImageState([]);
-        };
+        // return () => {
+        //     setEditorImageState([]);
+        // };
     }, []);
 
     const makeNewId = () => elements.reduce((acc, elem) => (elem.id > acc ? elem.id : acc), -1) + 1;
@@ -172,7 +172,6 @@ const Editor = ({ elements, setElements, editorRef, editorHeight, saveEditorHeig
                         keyToCurrentElements={keyToCurrentElements}
                         tagName={element.tagName}
                         image={element.image}
-                        imageSrc={element.imageSrc}
                         text={element.innerHTML}
                         artworkId={element.artworkId}
                         isDoubleClicked={isDoubleClicked}

@@ -6,11 +6,19 @@ import ImageSlider from './ImageSlider';
 type Props = {
     editorWidth: number;
     imgList: string[];
+    addEditorImageState: (image: string) => void;
     changeEditorWidth: (w: number) => void;
     addImg: (img: string) => void;
     deleteImg: (idx: number) => void;
 };
-const AssetController = ({ editorWidth, imgList, changeEditorWidth, addImg, deleteImg }: Props) => {
+const AssetController = ({
+    editorWidth,
+    imgList,
+    addEditorImageState,
+    changeEditorWidth,
+    addImg,
+    deleteImg,
+}: Props) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     let src = '';
     const fileReader = new FileReader();
@@ -36,7 +44,7 @@ const AssetController = ({ editorWidth, imgList, changeEditorWidth, addImg, dele
                     <label htmlFor="input-file">이미지 업로드</label>
                 </AddImageLabel>
                 <AddImage type="file" id="input-file" ref={inputRef} accept="image/*" onChange={onChangeFile} />
-                <ImageSlider imgList={imgList} />
+                <ImageSlider imgList={imgList} addEditorImageState={addEditorImageState} />
             </Controller>
         </Container>
     );

@@ -27,46 +27,18 @@ type ExhibitionElement = {
     };
 };
 
-const getExhibitionElementsDetail = (el: ChildNode) => {
-    const element = el as HTMLElement;
-    const tagName = element.classList[1];
-    const { width, height, color, transform, backgroundColor } = element.style;
-    const { top, left, zIndex, backgroundImage, fontFamily, fontSize, textAlign } = window.getComputedStyle(element);
-    let imageSrc = null;
-    if (element.classList.contains('IMAGE')) {
-        imageSrc = backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
-    }
-    const artworkId = element.dataset.artwork;
-
-    const innerHTML = (tagName === 'TEXT' && element.children[0].innerHTML) || null;
-
-    return {
-        width,
-        height,
-        color,
-        transform,
-        backgroundColor,
-        top,
-        left,
-        zIndex,
-        fontFamily,
-        fontSize,
-        textAlign,
-        tagName,
-        imageSrc,
-        artworkId,
-        innerHTML,
-    };
-};
-
 const App = () => {
     const editorRef = useRef<HTMLDivElement | null>(null);
     const [editorHeight, setEditorHeight] = useState(1000);
     const [editorWidth, setEditorWidth] = useState(700);
-    const [imgList, setImgList] = useState<string[]>([]);
+    const [editorImageState, setEditorImageState] = useState<string[]>([]);
     const [elements, setElements] = useState<EditorElementProp[]>([]);
+    const [imgList, setImgList] = useState<string[]>([]);
     const setElementList = (elementList: EditorElementProp[]) => {
         setElements(elementList);
+    };
+    const addEditorImageState = (image: string) => {
+        setEditorImageState([...editorImageState, image]);
     };
     const saveEditorHeight = (flag: boolean) => {
         setEditorHeight((prev) => (flag ? prev + diffSizeOfGap : prev - diffSizeOfGap));
@@ -90,6 +62,7 @@ const App = () => {
                 <AssetController
                     editorWidth={editorWidth}
                     imgList={imgList}
+                    addEditorImageState={addEditorImageState}
                     changeEditorWidth={changeEditorWidth}
                     addImg={addImg}
                     deleteImg={deleteImg}
@@ -97,6 +70,7 @@ const App = () => {
                 <Editor
                     elements={elements}
                     setElements={setElementList}
+                    editorImageState={editorImageState}
                     editorRef={editorRef}
                     editorHeight={editorHeight}
                     saveEditorHeight={saveEditorHeight}

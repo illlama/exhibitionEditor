@@ -6,16 +6,13 @@ import chevronRightIcon from 'images/chevron-right.png';
 
 type Props = {
     imgList: string[];
+    addEditorImageState: (image: string) => void;
 };
-const ImageSlider = ({ imgList }: Props) => {
+const ImageSlider = ({ imgList, addEditorImageState }: Props) => {
     const imageSliderRef = useRef<HTMLDivElement | null>(null);
 
-    const onClickImage = (id: number) => {
-        // return () => {
-        //     const image = imgList.find((img) => img.id === id);
-        //     if (!image) return;
-        //     setEditorImageState([...editorImageState, image]);
-        // };
+    const onClickImage = (image: string) => {
+        addEditorImageState(image);
     };
 
     const onClickLeftButton = (e: React.MouseEvent) => {
@@ -36,7 +33,7 @@ const ImageSlider = ({ imgList }: Props) => {
             <ImageWrapper ref={imageSliderRef}>
                 {imgList.map((image, i) => {
                     return (
-                        <Image key={i} onClick={() => onClickImage(i)}>
+                        <Image key={i} onClick={() => onClickImage(image)}>
                             <img src={image} alt={`선택이미지${i}`} draggable={false} />
                         </Image>
                     );
@@ -93,6 +90,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.div`
+    cursor: pointer;
     & img {
         max-height: 130px;
     }
