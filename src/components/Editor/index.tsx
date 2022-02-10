@@ -13,17 +13,28 @@ import fontStylingIcon from 'images/editor-font-styling.png';
 import { EditorContainer, ToolBar, EditorButton, EditArea } from 'style';
 import { initialImageStyle, initialRectStyle, initialTextStyle } from 'constant/editor-initial-state';
 import EditorElement from 'components/EditorElement';
+import ColorPicker from './ColorPicker';
+import FontStyler from './FontStyler';
 
 type Props = {
     elements: EditorElementProp[];
     setElements: Function;
     editorImageState: string[];
     editorRef: React.MutableRefObject<HTMLDivElement | null>;
+    editorWidth: number;
     editorHeight: number;
     saveEditorHeight: (flag: boolean) => void;
 };
 
-const Editor = ({ elements, setElements, editorImageState, editorRef, editorHeight, saveEditorHeight }: Props) => {
+const Editor = ({
+    elements,
+    setElements,
+    editorImageState,
+    editorRef,
+    editorWidth,
+    editorHeight,
+    saveEditorHeight,
+}: Props) => {
     const [currentElements, setCurrentElements] = useState<Array<HTMLElement | null>>([]);
     const [showColorPicker, setShowColorPicker] = useState(false);
     const [showFontStyler, setShowFontStyler] = useState(false);
@@ -188,7 +199,7 @@ const Editor = ({ elements, setElements, editorImageState, editorRef, editorHeig
     };
 
     return (
-        <EditorContainer height={editorHeight}>
+        <EditorContainer height={editorHeight} width={editorWidth}>
             <ToolBar>
                 <EditorButton onClick={createRectangular} bg={rectButtonIcon} />
                 <EditorButton onClick={onClickColorButton} bg={colorButtonIcon} />
@@ -199,22 +210,17 @@ const Editor = ({ elements, setElements, editorImageState, editorRef, editorHeig
                 <EditorButton onClick={() => saveEditorHeight(false)} bg={decreaseEditorIcon} />
                 <EditorButton onClick={onFontStylerButton} bg={fontStylingIcon} />
                 <EditorButton onClick={deleteElement} bg={deleteIcon} />
-                {/* {showColorPicker && (
-          <ColorPicker
-            color={color}
-            handleColor={(color) => {
-              setColor(color)
-            }}
-          />
-        )} */}
-                {/* {showFontStyler && (
-          <FontStyler
-            fontStyle={fontStyles}
-            changeFontStyle={changeFontStyles}
-          />
-        )} */}
+                {showColorPicker && (
+                    <ColorPicker
+                        color={color}
+                        handleColor={(color) => {
+                            setColor(color);
+                        }}
+                    />
+                )}
+                {showFontStyler && <FontStyler fontStyle={fontStyles} changeFontStyle={changeFontStyles} />}
             </ToolBar>
-            <EditArea height={editorHeight} ref={editorRef} onKeyDown={onKeyDown} tabIndex={0}>
+            <EditArea height={editorHeight} width={editorWidth} ref={editorRef} onKeyDown={onKeyDown} tabIndex={0}>
                 {renderElements()}
             </EditArea>
         </EditorContainer>

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 interface EditorProps {
     height: number;
+    width: number;
 }
 
 export const Button = styled.button`
@@ -17,8 +18,10 @@ export const Button = styled.button`
 export const EditorContainer = styled.div<EditorProps>`
     width: 100%;
     height: ${(props) => props.height}px;
+    width: ${(props) => props.width}px;
     border: 1px solid #c2c2c2;
     overflow: hidden;
+    margin: 0 auto;
 `;
 export const ToolBar = styled.div`
     display: flex;
@@ -48,7 +51,7 @@ export const EditArea = styled.div<EditorProps>`
     position: relative;
     overflow: hidden;
     height: ${(props) => props.height}px;
-
+    width: ${(props) => props.width}px;
     &:focus-visible {
         outline: none;
     }

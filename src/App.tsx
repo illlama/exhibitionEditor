@@ -17,20 +17,11 @@ type EditorProp = {
     saveEditorSize: (flag: boolean) => void;
     editorSize: number;
 };
-type ExhibitionElement = {
-    tagName: string;
-    innerHTML?: string | null;
-    imageSrc?: string | null;
-    artworkId?: string;
-    style: {
-        [key: string]: string;
-    };
-};
 
 const App = () => {
     const editorRef = useRef<HTMLDivElement | null>(null);
     const [editorHeight, setEditorHeight] = useState(1000);
-    const [editorWidth, setEditorWidth] = useState(700);
+    const [editorWidth, setEditorWidth] = useState(1200);
     const [editorImageState, setEditorImageState] = useState<string[]>([]);
     const [elements, setElements] = useState<EditorElementProp[]>([]);
     const [imgList, setImgList] = useState<string[]>([]);
@@ -41,11 +32,12 @@ const App = () => {
         setEditorImageState([...editorImageState, image]);
     };
     const saveEditorHeight = (flag: boolean) => {
-        setEditorHeight((prev) => (flag ? prev + diffSizeOfGap : prev - diffSizeOfGap));
+        setEditorHeight((prev) =>
+            flag ? prev + diffSizeOfGap : prev - diffSizeOfGap < 400 ? 400 : prev - diffSizeOfGap,
+        );
     };
     const changeEditorWidth = (w: number) => {
-        console.log(w);
-        setEditorWidth(w > 1200 ? 1200 : w);
+        setEditorWidth(w > 3000 ? 3000 : w);
     };
     const addImg = (img: string) => {
         setImgList((prev) => [...prev, img]);
@@ -72,6 +64,7 @@ const App = () => {
                     setElements={setElementList}
                     editorImageState={editorImageState}
                     editorRef={editorRef}
+                    editorWidth={editorWidth}
                     editorHeight={editorHeight}
                     saveEditorHeight={saveEditorHeight}
                 />
