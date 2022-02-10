@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/exhibitionEditor/static/css/main.1105a405.css",
+    "main.js": "/exhibitionEditor/static/js/main.c62f9e7f.js",
+    "index.html": "/exhibitionEditor/index.html",
+    "main.1105a405.css.map": "/exhibitionEditor/static/css/main.1105a405.css.map",
+    "main.c62f9e7f.js.map": "/exhibitionEditor/static/js/main.c62f9e7f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1105a405.css",
+    "static/js/main.c62f9e7f.js"
+  ]
+}
