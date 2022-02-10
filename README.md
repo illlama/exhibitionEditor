@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+# Exhibition Editor
+[벽전](https://github.com/boostcampwm-2021/web14-salondesrefuses) 서비스에 사용 된 전시회 에디터입니다.
+벽전 서비스에서는 등록된 artwork를 가져와서 보여준 반면 현 에디터에서는 이미지를 업로드하시고 클릭하시면 됩니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+간단하게 다시 만든 서비스로,
+- width 설정 추가
+- font style에서 font-family는 변경 불가
+- 저장, 수정으로 페이지에 결과를 보여주거나 변경
+등의 차이점이 있습니다.
 
-## Available Scripts
+## 주요 기능
+- TEXT, RECTANGULAR, IMAGE를 에디터에 띄울 수 있다
+- 띄워진 ELEMENT들은 이동이 가능하고, 사이즈 조절이 가능하다
+- TEXT는 double click시 수정모드가 된다.
+- 색상 변경 기능이 있어 TEXT의 글씨 색상, RECTANGULAR의 배경 색상을 바꿀 수 있다
+- TEXT는 정렬을 왼쪽, 중앙, 오른쪽 바꿀 수 있으며 글씨 크기를 조절할 수 있다
+- z-index를 사용하여 겹치는 ELEMENT의 값을 조정해 줄 수 있다
+- 모든 ELEMENT는 삭제가 가능하다
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 추가
+현재 상태의 에디터에 더 많은 기능과 효율적인 구조로 변경할 계획에 있습니다. 추후 라이브러리로 제작할 생각입니다.
