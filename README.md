@@ -1,7 +1,7 @@
 # Exhibition Editor
 [벽전](https://github.com/boostcampwm-2021/web14-salondesrefuses) 서비스에 사용 된 전시회 에디터입니다.
 벽전 서비스에서는 등록된 artwork를 가져와서 보여준 반면 현 에디터에서는 이미지를 업로드하시고 클릭하시면 됩니다.
-
+### [배포 링크](https://illlama.github.io/exhibitionEditor/)
 간단하게 다시 만든 서비스로,
 - width 설정 추가
 - font style에서 font-family는 변경 불가
